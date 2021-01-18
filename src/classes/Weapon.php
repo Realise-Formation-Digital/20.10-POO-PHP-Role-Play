@@ -1,38 +1,39 @@
 <?php
 
 class Weapon
- {
-     // Code starts here...
+{
+    /**
+     * _id
+     *
+     * @var mixed
+     */
+    private $_id;
+    /**
+     * _name
+     *
+     * @var mixed
+     */
+    private $_name;
+    /**
+     * _strength
+     *
+     * @var mixed
+     */
+    private $_strength;
+    /**
+     * _stamina
+     *
+     * @var mixed
+     */
+    private $_stamina;
+    /**
+     * _price
+     *
+     * @var mixed
+     */
+    private $_price;
 
-
-     // Properties
-     private $_id;
-     private $_name;
-     private $_strength;
-     private $_stamina;
-     private $_price;
-
-    public function __construct() {}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public function __construct()
+    {
+    }
 }
-?>
