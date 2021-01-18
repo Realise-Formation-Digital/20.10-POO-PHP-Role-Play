@@ -1,0 +1,15 @@
+<svg width="333" height="340" xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd">
+ <defs>
+  <style type="text/css">.fil0 {fill:black;fill-rule:nonzero}</style>
+ </defs>
+ <g>
+  <title>Balsam Background</title>
+  <rect x="-1" y="-1" width="335" height="342" id="canvas_background" fill="none"/>
+ </g>
+ <g>
+  <title>Balsam Icon</title>
+  <g id="svg_1">
+   <path d="m207.29635,315.5l-93,0c-51,-55 -36,-158 19,-186l0,-47l-21,-16l0,-21l17,0l0,-21c19,0 38,0 58,0l0,21l14,0l0,37l-10,0l0,10c52,-7 80,59 39,91c16,44 9,98 -23,132zm-102,-134l14,0l0,39l17,0l0,-39l79,0c-9,-21 -19,-31 -37,-42l0,-70l10,0l0,-10l-15,0l0,-22l-30,0l0,22l-18,0l0,1c13,11 7,9 22,9l0,69c-20,8 -33,21 -42,43zm86,-75l0,25c15,9 26,24 34,39c26,-25 4,-71 -34,-64z" class="fil0" id="balsam_svg"/>
+  </g>
+ </g>
+</svg>
