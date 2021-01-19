@@ -1,6 +1,7 @@
 <?php
 
 require_once '../src/config/loader.php';
+require_once '../src/config/database.php';
 
 // use \App\;
 

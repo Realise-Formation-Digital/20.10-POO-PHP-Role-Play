@@ -1,6 +1,6 @@
 <?php
 
-$pdo = new PDO('mysql:dbname=pooroleplay_db;host=localhost', 'user', 'user');
+$pdo = new PDO('mysql:dbname=combatgentil_db;host=maria_db', 'CF', 'digital2021');
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
