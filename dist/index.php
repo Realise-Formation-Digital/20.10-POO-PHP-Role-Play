@@ -2,7 +2,7 @@
 
 require_once '../src/config/loader.php';
 
-use \App\Test;
+// use \App\;
 
 ?>
 
@@ -13,7 +13,10 @@ use \App\Test;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Role Play</title>
+    <!-- Favicon Svg -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <title>Balsam Role Play</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -27,11 +30,57 @@ use \App\Test;
 
     <?php
 
-    $class = new Test();
+    $page = 'home';
 
-    $afficher = $class->test();
+    if (isset($_GET['id'])) {
+        $page = $_GET['id'];
+    }
 
-    var_dump($afficher);
+    switch ($page) {
+        case 'home':
+            include 'home.php';
+            break;
+        case 'npc':
+            include 'npc.php';
+            break;
+        case 'sell':
+            include 'sell.php';
+            break;
+        case 'fight':
+            include 'fight.php';
+            break;
+        case 'win':
+            include 'win.php';
+            break;
+        case 'over':
+            include 'over.php';
+            break;
+    }
+
+    /* 
+    $servername = "localhost";
+    $username = "user";
+    $password = "user";
+    $dbname = "pooroleplay_db";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "INSERT INTO `Hero` (`heroName`, `health`, `xp`, `strength`, `stamina`, `bitcoin`) VALUES ('louis222', '10', '0', '1', '1', '20')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+ */
+
 
     ?>
 
