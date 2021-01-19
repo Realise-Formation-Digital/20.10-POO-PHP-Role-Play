@@ -24,8 +24,13 @@ $sqlVilain = "INSERT INTO Vilain (vilainName, xp, health, strength, stamina, bit
 VALUES ('Joker', '1', '1', '1', '1', '1')";
 
 $pdo->exec($sqlHero);
+$idHero = $pdo->lastInsertId();
 $pdo->exec($sqlNpc);
+$idNpc = $pdo->lastInsertId();
 $pdo->exec($sqlWeapon);
+$idWeapon = $pdo->lastInsertId();
 $pdo->exec($sqlVilain);
 
-//SELECT Hero.id, Weapon.id FROM Hero JOIN Weapon ON Hero.id = heroWeapon.id;
+$sqlHeroWeapon = "INSERT INTO heroWeapon (idHero, idWeapon, gear) VALUES ($idHero, $idWeapon, true)";
+
+$pdo->exec($sqlHeroWeapon);
