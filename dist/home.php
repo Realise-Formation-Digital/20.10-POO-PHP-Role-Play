@@ -30,5 +30,6 @@ require 'templates/header.php';
 <?php
 
 require 'templates/footer.php';
+require_once '../src/action/start.php';
 
 ?>
