@@ -1,5 +1,6 @@
 <?php
 // création du lien avec Base De Données
+
 require '../config/database.php';
 
 //declaration de variable query
