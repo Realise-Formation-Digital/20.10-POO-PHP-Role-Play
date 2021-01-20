@@ -1,3 +1,12 @@
+<?php
+
+// On se connecte à la database
+require '../src/config/database.php';
+
+// On recherche les points xp, le health, la strenght, le stamina and the bitcoin figurant dans la table hero.
+$query = $pdo->query("SELECT * FROM Hero");
+$hero = $query->fetch();
+?>
 <nav class="navbar navbar-dark bg-dark text-light fixed-top">
     <a title='Back to homepage' class="navbar-brand text-light" href="index.php">
         <img src="img/balsam_icon.svg" width="30" height="30" class="d-inline-block text-light align-top" alt="" loading="lazy">
@@ -5,23 +14,23 @@
     </a>
     <span title='XP'>
         <i class="fas fa-star"></i>
-        <span>0</span>
+        <span><?=$hero->xp?></span>
     </span>
     <span title='Health'>
         <i class="fas fa-heart"></i>
-        <span>10</span>
+        <span><?=$hero->health?></span>
     </span>
     <span title='Strength'>
         <i class="fas fa-fist-raised"></i>
-        <span>1</span>
+        <span><?=$hero->strength?></span>
     </span>
     <span title='Stamina'>
         <i class="fas fa-shield-alt"></i>
-        <span>1</span>
+        <span><?=$hero->stamina?></span>
     </span>
     <span title='Bitcoin'>
         <i class="fas fa-coins"></i>
-        <span>20</span>
+        <span><?=$hero->bitcoin?></span>
     </span>
     <form class="form-inline">
         <div class="form-group">
