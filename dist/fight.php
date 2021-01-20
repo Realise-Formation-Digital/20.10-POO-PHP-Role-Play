@@ -13,7 +13,7 @@ $id = $_GET['id'];
 $query = $pdo->query("SELECT * FROM Vilain WHERE id = $id");
 
 $Vilain = $query->fetch();
-$id = $Vilain->idWeapon; 
+$id = $Vilain->idWeapon;
 $query = $pdo->query("SELECT weaponName FROM Weapon WHERE id = $id");
 $Weapon = $query->fetch();
 ?>
@@ -26,44 +26,45 @@ $Weapon = $query->fetch();
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h5><?=$Vilain->vilainName?></h5>
+                <h5><?= $Vilain->vilainName ?></h5>
             </div>
             <div class="card-body">
                 <div class="alert alert-warning text-center" role="alert">
                     <span>
                         <span class="mx-4" title='XP'>
                             <i class="fas fa-star"></i>
-                            <span><?=$Vilain->xp?></span>
+                            <span><?= $Vilain->xp ?></span>
                         </span>
                         <span class="mx-4" title='Health'>
                             <i class="fas fa-heart"></i>
-                            <span><?=$Vilain->health?></span>
+                            <span><?= $Vilain->health ?></span>
                         </span>
                         <span class="mx-4" title='Strength'>
                             <i class="fas fa-fist-raised"></i>
-                            <span><?=$Vilain->strength?></span>
+                            <span><?= $Vilain->strength ?></span>
                         </span>
                         <span class="mx-4" title='Stamina'>
                             <i class="fas fa-shield-alt"></i>
-                            <span><?=$Vilain->stamina?></span>
+                            <span><?= $Vilain->stamina ?></span>
                         </span>
                         <span class="mx-4" title='Weapon'>
                             <i class="fas fa-magic"></i>
-                            <span><?=$Weapon->weaponName?></span>
+                            <span><?= $Weapon->weaponName ?></span>
                         </span>
                         <span class="mx-4" title='Bitcoin'>
                             <i class="fas fa-coins"></i>
-                            <span><?=$Vilain->bitcoin?></span>
-                         </span>
+                            <span><?= $Vilain->bitcoin ?></span>
+                        </span>
                     </span>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="row">
-                    <div class="col text-center"><form class="" method="POST" action="">
-                        
+                    <div class="col text-center">
+
+                        <form class="" method="POST" action="../src/action/escape.php">
                             <button type="button" class="btn btn-success mr-2">Fight <i class="fas fa-heart-broken"></i></button>
-                            <button type="submit" class="btn btn-danger">Escape <i class//="fas fa-running"></i></button>
+                            <button type="submit" class="btn btn-danger">Escape <i class="fas fa-running"></i></button>
                         </form>
                     </div>
                 </div>
