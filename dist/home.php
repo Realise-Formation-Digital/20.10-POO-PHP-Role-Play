@@ -1,5 +1,6 @@
 <?php
 
+// On affiche le header
 require 'templates/header.php';
 
 ?>
@@ -22,14 +23,16 @@ require 'templates/header.php';
     <br />
     <div class="row">
         <div class="col text-center">
-            <button type="button" class="btn btn-lg btn-success">Start Game <i class="fas fa-dice"></i></button>
+            <form method="POST" action="../src/action/start.php">
+                <button type="submit" class="btn btn-lg btn-success">Start Game <i class="fas fa-dice"></i></button>
+            </form>
         </div>
     </div>
 </div>
 
 <?php
 
+// On affiche le footer
 require 'templates/footer.php';
-require_once '../src/action/start.php';
 
 ?>
