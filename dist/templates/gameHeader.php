@@ -22,6 +22,9 @@ $req1 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id");
         <img src="img/balsam_icon.svg" width="30" height="30" class="d-inline-block text-light align-top" alt="" loading="lazy">
         Balsam.ico
     </a>
+    <span title='Hero'>
+        <span><h5><?= $hero->heroName ?></h5></span>
+    </span>
     <span title='XP'>
         <i class="fas fa-star"></i>
         <span><?= $hero->xp ?></span>
