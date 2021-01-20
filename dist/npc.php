@@ -1,6 +1,16 @@
 <?php
 
+// On affiche le header
 require 'templates/gameHeader.php';
+
+// On se connecte à la database
+require '../src/config/database.php';
+
+// On récupère la variable $id présente dans la méthode GET
+$id = $_GET['id'];
+
+// On recherche toutes les armes figurant dans la table npcWeapon qui correspondent à l'id du Npc
+$query = $pdo->query("SELECT idWeapon FROM npcWeapon WHERE idNPC = $id");
 
 ?>
 
@@ -14,10 +24,10 @@ require 'templates/gameHeader.php';
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="?id=npc">Buy</a>
+                        <a class="nav-link active" href=<?= "?page=npc&id=" . $_GET['id'] ?>>Buy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?id=sell">Sell</a>
+                        <a class="nav-link" href=<?= "?page=sell&id=" . $_GET['id'] ?>>Sell</a>
                     </li>
                 </ul>
             </div>
@@ -33,47 +43,43 @@ require 'templates/gameHeader.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="buyWeapon" id="buyWeapon" value="buyWeapon" checked>
-                                </div>
-                            </th>
-                            <td>Excalibkjgkur</td>
-                            <td>2</td>
-                            <td>4</td>
-                            <td>15</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="buyWeapon" id="buyWeapon" value="buyWeapon">
-                                </div>
-                            </th>
-                            <td>Excalhgfhibur</td>
-                            <td>2</td>
-                            <td>4</td>
-                            <td>15</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="buyWeapon" id="buyWeapon" value="buyWeapon">
-                                </div>
-                            </th>
-                            <td>Excalidgdgfbur</td>
-                            <td>2</td>
-                            <td>4</td>
-                            <td>15</td>
-                        </tr>
+                        <?php
+
+                        // On récupère les propriétés de toutes les armes présentes dans l'inventaire du Npc
+                        foreach ($query as $item) {
+                            $req = $pdo->prepare("SELECT * FROM Weapon WHERE id = ?");
+                            $req->execute([$item->idWeapon]);
+                            $weapon = $req->fetch();
+
+                            // Chaque champ est mis en forme dans un tableau
+                            echo ("
+                                    <tr>
+                                    <th scope='row'>
+                                    <div class='form-check'>
+                                    <input class='form-check-input' type='radio' name='buyWeapon' id='$weapon->id' value='buyWeapon'>
+                                    </div>
+                                    </th>
+                                    <td>$weapon->weaponName</td>
+                                    <td>$weapon->strength</td>
+                                    <td>$weapon->stamina</td>
+                                    <td>$weapon->bitcoin</td>
+                                    </tr>
+                                ");
+                        }
+
+                        ?>
                     </tbody>
                 </table>
             </div>
             <div class="card-footer">
                 <div class="row">
                     <div class="col text-center">
-                        <button type="button" class="btn btn-success mr-2">Buy <i class="fas fa-shopping-cart"></i></button>
-                        <button type="button" class="btn btn-danger">Cancel <i class="fas fa-times-circle"></i></button>
+                        <form class="" method="POST" action="../src/action/nextPage.php?page=<?= $_GET['page'] . "&id=" . $_GET['id'] ?>">
+
+                            <button type="button" class="btn btn-success mr-2">Buy <i class="fas fa-shopping-cart"></i></button>
+
+                            <button type="submit" class="btn btn-danger">Cancel <i class="fas fa-times-circle"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -84,6 +90,7 @@ require 'templates/gameHeader.php';
 
 <?php
 
+// On affiche le footer
 require 'templates/gameFooter.php';
 
 ?>
