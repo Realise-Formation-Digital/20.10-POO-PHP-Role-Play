@@ -27,6 +27,7 @@ $Weapon = $query->fetch();
         <div class="card">
             <div class="card-header">
                 <h5><?= $Vilain->vilainName ?></h5>
+                <img src="img/<?= $Vilain->image ?>.jpg" class="img-fluid" alt="<?= $Vilain->vilainName ?>">
             </div>
             <div class="card-body">
                 <div class="alert alert-warning text-center" role="alert">

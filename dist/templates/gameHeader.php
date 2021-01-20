@@ -24,6 +24,7 @@ $req1 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id");
     </a>
     <span title='Hero'>
         <span><h5><?= $hero->heroName ?></h5></span>
+        <img src="img/<?= $hero->image ?>.jpg" height="50" width="100" alt="<?= $hero->heroName ?>">
     </span>
     <span title='XP'>
         <i class="fas fa-star"></i>
