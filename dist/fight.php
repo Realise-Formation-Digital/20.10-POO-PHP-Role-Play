@@ -1,11 +1,23 @@
 <?php
 
+
+
 // On affiche le header
 require 'templates/gameHeader.php';
 
 // On se connecte à la database
 require '../src/config/database.php';
 
+// On récupère la variable $id présente dans la méthode GET
+$id = $_GET['id'];
+
+// On recherche toutes les propriétés figurant dans la table Vilain qui correspondent à l'id du Vilain
+$query = $pdo->query("SELECT * FROM Vilain WHERE id = $id");
+
+$Vilain = $query->fetch();
+$id = $Vilain->idWeapon; 
+$query = $pdo->query("SELECT weaponName FROM Weapon WHERE id = $id");
+$Weapon = $query->fetch();
 ?>
 
 <div class="container">
@@ -16,34 +28,34 @@ require '../src/config/database.php';
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h5>Vilain</h5>
+                <h5><?=$Vilain->vilainName?></h5>
             </div>
             <div class="card-body">
                 <div class="alert alert-warning text-center" role="alert">
                     <span>
                         <span class="mx-4" title='XP'>
                             <i class="fas fa-star"></i>
-                            <span>0</span>
+                            <span><?=$Vilain->xp?></span>
                         </span>
                         <span class="mx-4" title='Health'>
                             <i class="fas fa-heart"></i>
-                            <span>10</span>
+                            <span><?=$Vilain->health?></span>
                         </span>
                         <span class="mx-4" title='Strength'>
                             <i class="fas fa-fist-raised"></i>
-                            <span>1</span>
+                            <span><?=$Vilain->strength?></span>
                         </span>
                         <span class="mx-4" title='Stamina'>
                             <i class="fas fa-shield-alt"></i>
-                            <span>1</span>
+                            <span><?=$Vilain->stamina?></span>
                         </span>
                         <span class="mx-4" title='Weapon'>
                             <i class="fas fa-magic"></i>
-                            <span>1</span>
+                            <span><?=$Weapon->weaponName?></span>
                         </span>
                         <span class="mx-4" title='Bitcoin'>
                             <i class="fas fa-coins"></i>
-                            <span>20</span>
+                            <span><?=$Vilain->bitcoin?></span>
                         </span>
                     </span>
                 </div>
