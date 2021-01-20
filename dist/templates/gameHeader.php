@@ -1,11 +1,16 @@
 <?php
 
+//Declaration de variables pour redirection de page
+$page = $_GET["page"];
+$pageSource = $_GET["id"];
+
 // On se connecte à la database
 require '../src/config/database.php';
 
 // On recherche les points xp, le health, la strenght, le stamina and the bitcoin figurant dans la table hero.
 $query = $pdo->query("SELECT * FROM Hero");
 $hero = $query->fetch();
+$coin = $hero->bitcoin;
 
 $id = $hero->id;
 
@@ -37,7 +42,7 @@ $req1 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id");
         <i class="fas fa-coins"></i>
         <span><?= $hero->bitcoin ?></span>
     </span>
-    <form class="form-inline">
+    <form method="POST" action="../src/action/trade.php?page=<?=$page . '&id=' . $pageSource?>" class="form-inline">
         <div class="form-group">
 
             <?php
@@ -47,12 +52,15 @@ $req1 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id");
                 $weapon = $req->fetch();
 
                 echo ('<select class="form-control">
-           <option>' . $weapon->weaponName . '</option>
-       </select>');
+                 <option>' . $weapon->weaponName . '</option>
+                  </select>');
             }
             ?>
             <!-- <button type="button" class="btn btn-info ml-1">OK <i class="fas fa-check-circle"></i></button> -->
-        </div>
-        <button title='Trade 1 Xp for 100 bitcoins ?' type="button" class="btn btn-info ml-3">1 <i class="fas fa-star"></i> for 100 <i class="fas fa-coins"></i></button>
+            </div> <?php if ($coin >= 100){
+            echo('<button title="Trade 1 Xp for 100 bitcoins ?" type="submit" class="btn btn-info ml-3">1 <i class="fas fa-star"></i> for 100 <i class="fas fa-coins"></i></button>');
+
+        } 
+        ?>
     </form>
 </nav>
