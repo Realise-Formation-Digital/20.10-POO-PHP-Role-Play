@@ -42,7 +42,7 @@ $req1 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id");
         <i class="fas fa-coins"></i>
         <span><?= $hero->bitcoin ?></span>
     </span>
-    <form method="POST" action="../src/action/trade.php?page=<?=$page . '&id=' . $pageSource?>" class="form-inline">
+    <form class="form-inline">
         <div class="form-group">
 
             <?php
@@ -56,11 +56,21 @@ $req1 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id");
                   </select>');
             }
             ?>
-            <!-- <button type="button" class="btn btn-info ml-1">OK <i class="fas fa-check-circle"></i></button> -->
-            </div> <?php if ($coin >= 100){
-            echo('<button title="Trade 1 Xp for 100 bitcoins ?" type="submit" class="btn btn-info ml-3">1 <i class="fas fa-star"></i> for 100 <i class="fas fa-coins"></i></button>');
-
-        } 
-        ?>
+            <button type="button" class="btn btn-info ml-2">OK <i class="fas fa-check-circle"></i></button>
+        </div>
     </form>
+    <?php if ($coin >= 100) {
+        $xpUrl = '../src/action/tradeXp.php?page=' . $page . '&id=' . $pageSource;
+        $strengthUrl = '../src/action/tradeStrength.php?page=' . $page . '&id=' . $pageSource;
+        $staminaUrl = '../src/action/tradeStamina.php?page=' . $page . '&id=' . $pageSource;
+        echo ('
+        <div>
+        <span class="mr-4">Trade for 100 <i class="fas fa-coins"></i></span>
+              <a href="' . $xpUrl . '"><button type="button" class="btn btn-info mr-1">1 <i class="fas fa-star"></i></button></a>
+              <a href="' . $strengthUrl . '"><button type="button" class="btn btn-info mr-1">1 <i class="fas fa-fist-raised"></i></button></a>
+              <a href="' . $staminaUrl . '"><button type="button" class="btn btn-info">1 <i class="fas fa-shield-alt"></i></button></a>
+              </div>
+           ');
+    }
+    ?>
 </nav>
