@@ -1,6 +1,10 @@
 <?php
 
+// On affiche le header
 require 'templates/gameHeader.php';
+
+// On se connecte à la database
+require '../src/config/database.php';
 
 ?>
 
@@ -47,8 +51,10 @@ require 'templates/gameHeader.php';
             <div class="card-footer">
                 <div class="row">
                     <div class="col text-center">
-                        <button type="button" class="btn btn-success mr-2">Fight <i class="fas fa-heart-broken"></i></button>
-                        <button type="button" class="btn btn-danger">Escape <i class="fas fa-running"></i></button>
+                        <form class="" method="POST" action="../src/action/nextPage.php?page=<?= $_GET['page'] . "&id=" . $_GET['id'] ?>">
+                            <button type="button" class="btn btn-success mr-2">Fight <i class="fas fa-heart-broken"></i></button>
+                            <button type="submit" class="btn btn-danger">Escape <i class="fas fa-running"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -59,6 +65,7 @@ require 'templates/gameHeader.php';
 
 <?php
 
+// On affiche le footer
 require 'templates/gameFooter.php';
 
 ?>

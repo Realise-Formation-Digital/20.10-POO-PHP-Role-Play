@@ -1,12 +1,3 @@
-<?php
-
-require_once '../src/config/loader.php';
-require_once '../src/config/database.php';
-
-// use \App\;
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,10 +22,14 @@ require_once '../src/config/database.php';
 
     <?php
 
+    // On récupère la variable $page présente dans la méthode GET
+    // Si la réponse est correcte, on charge le contenu correspondant à la page mentionnée
+    // Si la valeur est incorrecte on charge la page d'accueil (home.php)
+
     $page = 'home';
 
-    if (isset($_GET['id'])) {
-        $page = $_GET['id'];
+    if (isset($_GET['page'])) {
+        $page = $_GET['page'];
     }
 
     switch ($page) {
@@ -42,13 +37,37 @@ require_once '../src/config/database.php';
             include 'home.php';
             break;
         case 'npc':
-            include 'npc.php';
+            // On récupère la variable $id présente dans la méthode GET
+            // Si la réponse est correcte, on charge le contenu correspondant à l'id de la page npc.php
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                include 'npc.php';
+            } else {
+                // Si la valeur est incorrecte on charge la page d'accueil (home.php)
+                include 'home.php';
+            }
             break;
         case 'sell':
-            include 'sell.php';
+            // On récupère la variable $id présente dans la méthode GET
+            // Si la réponse est correcte, on charge le contenu correspondant à l'id de la page sell.php
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                include 'sell.php';
+            } else {
+                // Si la valeur est incorrecte on charge la page d'accueil (home.php)
+                include 'home.php';
+            }
             break;
         case 'fight':
-            include 'fight.php';
+            // On récupère la variable $id présente dans la méthode GET
+            // Si la réponse est correcte, on charge le contenu correspondant à l'id de la page fight.php
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                include 'fight.php';
+            } else {
+                // Si la valeur est incorrecte on charge la page d'accueil (home.php)
+                include 'home.php';
+            }
             break;
         case 'win':
             include 'win.php';
@@ -56,32 +75,10 @@ require_once '../src/config/database.php';
         case 'over':
             include 'over.php';
             break;
+        default:
+            include 'home.php';
+            break;
     }
-
-    /* 
-    $servername = "localhost";
-    $username = "user";
-    $password = "user";
-    $dbname = "pooroleplay_db";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql = "INSERT INTO `Hero` (`heroName`, `health`, `xp`, `strength`, `stamina`, `bitcoin`) VALUES ('louis222', '10', '0', '1', '1', '20')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
- */
-
 
     ?>
 
