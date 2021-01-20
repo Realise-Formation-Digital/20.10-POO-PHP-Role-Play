@@ -1,7 +1,5 @@
 <?php
 
-
-
 // On affiche le header
 require 'templates/gameHeader.php';
 
@@ -56,16 +54,16 @@ $Weapon = $query->fetch();
                         <span class="mx-4" title='Bitcoin'>
                             <i class="fas fa-coins"></i>
                             <span><?=$Vilain->bitcoin?></span>
-                        </span>
+                         </span>
                     </span>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="row">
-                    <div class="col text-center">
-                        <form class="" method="POST" action="../src/action/nextPage.php?page=<?= $_GET['page'] . "&id=" . $_GET['id'] ?>">
+                    <div class="col text-center"><form class="" method="POST" action="">
+                        
                             <button type="button" class="btn btn-success mr-2">Fight <i class="fas fa-heart-broken"></i></button>
-                            <button type="submit" class="btn btn-danger">Escape <i class="fas fa-running"></i></button>
+                            <button type="submit" class="btn btn-danger">Escape <i class//="fas fa-running"></i></button>
                         </form>
                     </div>
                 </div>
