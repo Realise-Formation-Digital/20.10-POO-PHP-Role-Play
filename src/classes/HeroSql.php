@@ -75,8 +75,8 @@ VALUES ($weaponName, 5, 5, $this->_weaponBitcoin)";
         $heroName = "'" . $this->_heroName . "'";
 
         // On insère un personnage dans la table Hero
-        $sqlHero = "INSERT INTO Hero (heroName, xp, health, strength, stamina, bitcoin)
-VALUES ($heroName, 0, 10, 15, 15, 20)";
+        $sqlHero = "INSERT INTO Hero (heroName, xp, health, strength, stamina, bitcoin, image)
+VALUES ($heroName, 0, 10, 1, 1, 20, 1)";
         $pdo->exec($sqlHero);
 
         // On récupère la valeur du champ id (primary keys) du dernier personnage inséré dans la table Hero
