@@ -9,6 +9,12 @@ require '../src/config/database.php';
 // On recherche toutes les armes non-équipées figurant dans la table heroWeapon
 $query = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE gear = 0");
 
+// On récupère la variable $id présente dans la méthode GET
+$id = $_GET['id'];
+
+$reqNpc = $pdo->query("SELECT npcName FROM NPC WHERE id = $id");
+$itemNpc = $reqNpc->fetch();
+
 ?>
 
 <div class="container">
@@ -17,6 +23,13 @@ $query = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE gear = 0");
     <br />
     <br />
     <div class="container">
+        <div class="alert alert-warning text-center" role="alert">
+            <span>
+                <h5 class=""><?= $itemNpc->npcName ?> (NPC)</h5>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam unde qui non aliquid accusantium molestiae, nisi numquam minus ipsam natus, voluptas voluptatibus repudiandae? Quod eaque nulla porro iste dolores explicabo.
+
+            </span>
+        </div>
         <div class="card">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">

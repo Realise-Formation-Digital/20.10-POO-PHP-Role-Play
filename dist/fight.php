@@ -26,7 +26,7 @@ $Weapon = $query->fetch();
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h5><?= $Vilain->vilainName ?></h5>
+                <h5><?= $Vilain->vilainName ?> (Vilain)</h5>
             </div>
             <div class="card-body">
                 <div class="alert alert-warning text-center" role="alert">
@@ -67,7 +67,7 @@ $Weapon = $query->fetch();
 
                         <form class="" method="POST" action="../src/action/escape.php">
 
-                  
+
 
                             <button type="button" class="btn btn-success mr-2">Fight <i class="fas fa-heart-broken"></i></button>
                             <button type="submit" class="btn btn-danger">Escape <i class//="fas fa-running"></i></button>
