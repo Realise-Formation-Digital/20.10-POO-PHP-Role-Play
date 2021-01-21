@@ -10,7 +10,7 @@ require '../src/config/database.php';
 $id = $_GET['id'];
 
 // On recherche toutes les propriétés figurant dans la table Vilain qui correspondent à l'id du Vilain
-$query = $pdo->query("SELECT * FROM Vilain WHERE id = $id");
+$query = $pdo->query("SELECT * FROM Vilain WHERE id = $id AND health");
 
 $Vilain = $query->fetch();
 $id = $Vilain->idWeapon;
@@ -67,13 +67,14 @@ $Weapon = $query->fetch();
             <div class="card-footer">
                 <div class="row">
 
-                    <div class="col text-center">
+                    <div class="col-6 text-right">
+                        <form method="POST" action="../src/action/fight.php?id=<?= $id ?>">
+                            <button type="submit" class="btn btn-success mr-2">Fight <i class="fas fa-heart-broken"></i></button>
+                        </form>
+                    </div>
 
-                        <form class="" method="POST" action="../src/action/escape.php">
-
-
-
-                            <button type="button" class="btn btn-success mr-2">Fight <i class="fas fa-heart-broken"></i></button>
+                    <div class="col-6 text-left">
+                        <form method="POST" action="../src/action/escape.php">
                             <button type="submit" class="btn btn-danger">Escape <i class="fas fa-running"></i></button>
                         </form>
                     </div>
