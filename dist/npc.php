@@ -12,9 +12,6 @@ $id = $_GET['id'];
 // On recherche toutes les armes figurant dans la table npcWeapon qui correspondent à l'id du Npc
 $query = $pdo->query("SELECT idWeapon FROM npcWeapon WHERE idNPC = $id");
 
-$reqNpc = $pdo->query("SELECT npcName FROM NPC WHERE id = $id");
-$itemNpc = $reqNpc->fetch();
-
 ?>
 
 <div class="container">
@@ -23,13 +20,10 @@ $itemNpc = $reqNpc->fetch();
     <br />
     <br />
     <div class="container">
-        <div class="alert alert-warning text-center" role="alert">
-            <span>
-                <h5 class=""><?= $itemNpc->npcName ?> (NPC)</h5>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam unde qui non aliquid accusantium molestiae, nisi numquam minus ipsam natus, voluptas voluptatibus repudiandae? Quod eaque nulla porro iste dolores explicabo.
-
-            </span>
-        </div>
+        <?php
+        // On affiche le nom du Npc et un texte de description
+        require 'templates/npcInfo.php';
+        ?>
         <div class="card">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
