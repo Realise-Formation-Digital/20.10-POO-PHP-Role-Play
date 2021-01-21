@@ -30,7 +30,10 @@ $Weapon = $query->fetch();
         ?>
         <div class="card">
             <div class="card-header">
+
                 <h5>Hero VS <?= $Vilain->vilainName ?></h5>
+                <img src="img/<?= $Vilain->image ?>.jpg" class="img-fluid" alt="<?= $Vilain->vilainName ?>">
+n
             </div>
             <div class="card-body">
                 <div class="alert alert-secondary text-center" role="alert">
@@ -74,7 +77,16 @@ $Weapon = $query->fetch();
 
 
                             <button type="button" class="btn btn-success mr-2">Fight <i class="fas fa-heart-broken"></i></button>
+
+                            <?php
+                            $xp = $hero->xp; 
+                            if ($xp >= 1) {
+                                echo ('
                             <button type="submit" class="btn btn-danger">Escape <i class="fas fa-running"></i></button>
+                            ');
+                            }
+                            ?>
+
                         </form>
                     </div>
                 </div>
