@@ -14,7 +14,20 @@ $coin = $hero->bitcoin;
 
 $id = $hero->id;
 
+// on recherche toutes les armes présentes dans l'inventaire du hero
 $req1 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id");
+
+// On met à jour les points de strength et de stamina du hero en fonction de l'arme qu'il a équipé
+$req2 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id AND gear = 1");
+$activeWeapon = $req2->fetch();
+$req3 = $pdo->prepare("SELECT * FROM Weapon WHERE id = ?");
+$req3->execute([$activeWeapon->idWeapon]);
+$weaponStat = $req3->fetch();
+$weaponStrength = $weaponStat->strength;
+$weaponStamina = $weaponStat->stamina;
+$heroStrength = $weaponStrength + $hero->strength;
+$heroStamina = $weaponStamina + $hero->stamina;
+
 
 ?>
 <nav class="navbar navbar-dark bg-dark text-light fixed-top">
@@ -36,34 +49,39 @@ $req1 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id");
     </span>
     <span title='Strength'>
         <i class="fas fa-fist-raised"></i>
-        <span><?= $hero->strength ?></span>
+        <span><?= $heroStrength ?></span>
     </span>
     <span title='Stamina'>
         <i class="fas fa-shield-alt"></i>
-        <span><?= $hero->stamina ?></span>
+        <span><?= $heroStamina ?></span>
     </span>
     <span title='Bitcoin'>
         <i class="fas fa-coins"></i>
         <span><?= $hero->bitcoin ?></span>
     </span>
-    <form class="form-inline">
-        <div class="form-group">
+    <div>
+        <form class="form-inline">
+            <div class="form-group">
 
-            <?php
-            foreach ($req1 as $item) {
-                $req = $pdo->prepare("SELECT * FROM Weapon WHERE id = ?");
-                $req->execute([$item->idWeapon]);
-                $weapon = $req->fetch();
+                <?php
+                // On affiche le nom des armes du hero dans une liste afin de sélectionner celle qu'il veut équiper
+                foreach ($req1 as $item) {
+                    $req = $pdo->prepare("SELECT * FROM Weapon WHERE id = ?");
+                    $req->execute([$item->idWeapon]);
+                    $weapon = $req->fetch();
 
-                echo ('<select class="form-control">
+                    echo ('<select class="form-control">
                  <option>' . $weapon->weaponName . '</option>
                   </select>');
-            }
-            ?>
-            <button type="button" class="btn btn-info ml-2">OK <i class="fas fa-check-circle"></i></button>
-        </div>
-    </form>
+                }
+                ?>
+                <!-- On équipe une arme -->
+                <button type="button" class="btn btn-info ml-2">OK</i></button>
+            </div>
+        </form>
+    </div>
     <?php if ($coin >= 100) {
+        // Boutons pour trade 100 bitcoin contre xp, strength, stamina
         $xpUrl = '../src/action/tradeXp.php?page=' . $page . '&id=' . $pageSource;
         $strengthUrl = '../src/action/tradeStrength.php?page=' . $page . '&id=' . $pageSource;
         $staminaUrl = '../src/action/tradeStamina.php?page=' . $page . '&id=' . $pageSource;

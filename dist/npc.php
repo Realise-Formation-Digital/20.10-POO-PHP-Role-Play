@@ -20,6 +20,10 @@ $query = $pdo->query("SELECT idWeapon FROM npcWeapon WHERE idNPC = $id");
     <br />
     <br />
     <div class="container">
+        <?php
+        // On affiche le nom du Npc et un texte de description
+        require 'templates/npcInfo.php';
+        ?>
         <div class="card">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">

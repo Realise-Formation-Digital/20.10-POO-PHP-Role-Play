@@ -24,13 +24,19 @@ $Weapon = $query->fetch();
     <br />
     <br />
     <div class="container">
+        <?php
+        // On affiche le nom du Vilain et un texte de description
+        require 'templates/vilainInfo.php';
+        ?>
         <div class="card">
             <div class="card-header">
-                <h5><?= $Vilain->vilainName ?></h5>
+
+                <h5>Hero VS <?= $Vilain->vilainName ?></h5>
                 <img src="img/<?= $Vilain->image ?>.jpg" class="img-fluid" alt="<?= $Vilain->vilainName ?>">
+n
             </div>
             <div class="card-body">
-                <div class="alert alert-warning text-center" role="alert">
+                <div class="alert alert-secondary text-center" role="alert">
                     <span>
                         <span class="mx-4" title='XP'>
                             <i class="fas fa-star"></i>
@@ -68,9 +74,10 @@ $Weapon = $query->fetch();
 
                         <form class="" method="POST" action="../src/action/escape.php">
 
-                  
+
 
                             <button type="button" class="btn btn-success mr-2">Fight <i class="fas fa-heart-broken"></i></button>
+
                             <?php
                             $xp = $hero->xp; 
                             if ($xp >= 1) {
@@ -79,6 +86,7 @@ $Weapon = $query->fetch();
                             ');
                             }
                             ?>
+
                         </form>
                     </div>
                 </div>
