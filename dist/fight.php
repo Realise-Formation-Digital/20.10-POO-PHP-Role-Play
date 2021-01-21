@@ -74,7 +74,7 @@ $Weapon = $query->fetch();
 
 
                             <button type="button" class="btn btn-success mr-2">Fight <i class="fas fa-heart-broken"></i></button>
-                            <button type="submit" class="btn btn-danger">Escape <i class//="fas fa-running"></i></button>
+                            <button type="submit" class="btn btn-danger">Escape <i class="fas fa-running"></i></button>
                         </form>
                     </div>
                 </div>
