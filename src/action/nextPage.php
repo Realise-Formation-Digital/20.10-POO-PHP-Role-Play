@@ -11,14 +11,7 @@ foreach ($query as $page) {
     $minId = $page->id;
 }
 
-$query = $pdo->query('SELECT id FROM Vilain ORDER BY id ASC');
-
-foreach ($query as $page) {
-
-    $maxId = $page->id;
-}
-
-$nbId = rand($minId, $maxId);
+$nbId = $minId;
 
 if ($nbId == 0) {
 
@@ -54,6 +47,23 @@ if ($nbId == 0) {
 
     // Si la valeur de $random est égale à 1, on redirige l'utilisateur vers la page fight.php
     else if ($random == '1') {
+
+        // On ajoute une condition afin de spécifier l'id d'un personnage aléatoire présent dans la table Vilain
+        $query = $pdo->query('SELECT id FROM Vilain ORDER BY id DESC');
+
+        foreach ($query as $page) {
+
+            $minId = $page->id;
+        }
+
+        $query = $pdo->query('SELECT id FROM Vilain ORDER BY id ASC');
+
+        foreach ($query as $page) {
+
+            $maxId = $page->id;
+        }
+
+        $nbId = rand($minId, $maxId);
 
         header('Location: ../../dist/index.php?page=fight&id=' . $nbId);
 
