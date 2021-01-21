@@ -13,9 +13,6 @@ $query = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE gear = 0");
 
 <div class="container">
     <br />
-    <br />
-    <br />
-    <br />
     <div class="container">
         <?php
         // On affiche le nom du Npc et un texte de description

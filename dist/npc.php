@@ -16,9 +16,6 @@ $query = $pdo->query("SELECT idWeapon FROM npcWeapon WHERE idNPC = $id");
 
 <div class="container">
     <br />
-    <br />
-    <br />
-    <br />
     <div class="container">
         <?php
         // On affiche le nom du Npc et un texte de description
