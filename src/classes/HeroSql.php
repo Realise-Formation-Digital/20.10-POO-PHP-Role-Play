@@ -65,7 +65,7 @@ class HeroSql
 
         // On insère une arme dans la table Weapon
         $sqlWeapon = "INSERT INTO Weapon (weaponName, strength, stamina, bitcoin)
-VALUES ($weaponName, 1, 0, $this->_weaponBitcoin)";
+VALUES ($weaponName, 5, 5, $this->_weaponBitcoin)";
         $pdo->exec($sqlWeapon);
 
         //on récupère la valeur du champ id (primary keys) de la dernière arme insérée dans la table Weapon
