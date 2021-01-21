@@ -30,14 +30,19 @@ $heroStamina = $weaponStamina + $hero->stamina;
 
 
 ?>
-<nav class="navbar navbar-dark bg-dark text-light fixed-top">
+<nav class="navbar navbar-dark bg-dark text-light sticky-top">
     <a title='Back to homepage' class="navbar-brand text-light" href="index.php">
         <img src="img/balsam_icon.svg" width="30" height="30" class="d-inline-block text-light align-top" alt="" loading="lazy">
         Balsam.ico
     </a>
     <span title='Hero'>
-        <span><h5><?= $hero->heroName ?></h5></span>
-        <img src="img/<?= $hero->image ?>.jpg" height="50" width="100" alt="<?= $hero->heroName ?>">
+        <span style="position:relative">
+            <img style="border-radius:100px;" src="img/<?= $hero->image ?>.jpg" height="50" width="100" alt="<?= $hero->heroName ?>">
+
+            <h5><span style="position:absolute; top:0%; left:20%; opacity:60%" class="badge badge-dark">
+                    <?= $hero->heroName ?>
+                </span></h5>
+        </span>
     </span>
     <span title='XP'>
         <i class="fas fa-star"></i>

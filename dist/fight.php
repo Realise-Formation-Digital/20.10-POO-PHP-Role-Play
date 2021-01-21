@@ -20,9 +20,6 @@ $Weapon = $query->fetch();
 
 <div class="container">
     <br />
-    <br />
-    <br />
-    <br />
     <div class="container">
         <?php
         // On affiche le nom du Vilain et un texte de description
@@ -31,11 +28,11 @@ $Weapon = $query->fetch();
         <div class="card">
             <div class="card-header">
 
-                <h5>Hero VS <?= $Vilain->vilainName ?></h5>
-                <img src="img/<?= $Vilain->image ?>.jpg" class="img-fluid" alt="<?= $Vilain->vilainName ?>">
-                n
+                <h5><?= $hero->heroName ?> VS <?= $Vilain->vilainName ?></h5>
+
             </div>
             <div class="card-body">
+                <img style="border-top-left-radius:15px; border-top-right-radius:15px;" src="img/<?= $Vilain->image ?>.jpg" class="img-fluid" alt="<?= $Vilain->vilainName ?>">
                 <div class="alert alert-secondary text-center" role="alert">
                     <span>
                         <span class="mx-4" title='XP'>
@@ -84,6 +81,8 @@ $Weapon = $query->fetch();
             </div>
         </div>
     </div>
+    <br />
+    <br />
     <br />
 </div>
 
