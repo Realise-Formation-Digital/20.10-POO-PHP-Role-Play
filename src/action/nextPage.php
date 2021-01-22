@@ -3,6 +3,17 @@
 // On se connecte à la database
 require '../config/database.php';
 
+$query5 = $pdo->query('SELECT * FROM Hero');
+$hero = $query5->fetch();
+
+$heroXp = $hero->xp;
+
+if ($heroXp >= 50) {
+
+    header("location: ../../dist/index.php?page=win");
+    exit;
+}
+
 // On ajoute une condition afin de spécifier l'id d'un personnage aléatoire présent dans la table Vilain
 $query = $pdo->query('SELECT id FROM Vilain ORDER BY id DESC');
 
