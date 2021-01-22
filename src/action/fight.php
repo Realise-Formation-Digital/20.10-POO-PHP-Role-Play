@@ -61,6 +61,7 @@ if ($vilainPower >= $heroPower) {
 
         $pdo->query("DELETE FROM Vilain WHERE id = $id");
     }
+    unset($id);
 }
 
 

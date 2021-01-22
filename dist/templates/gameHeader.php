@@ -65,8 +65,9 @@ $heroStamina = $weaponStamina + $hero->stamina;
         <span><?= $hero->bitcoin ?></span>
     </span>
     <div>
-        <form class="form-inline">
+        <form method="POST" action="../src/action/gearWeapon.php?id=<?".$pageSource."?>" class="form-inline">
             <div class="form-group">
+                <select name="Weapons" class="form-control">  
 
                 <?php
                 // On affiche le nom des armes du hero dans une liste afin de sélectionner celle qu'il veut équiper
@@ -74,14 +75,15 @@ $heroStamina = $weaponStamina + $hero->stamina;
                     $req = $pdo->prepare("SELECT * FROM Weapon WHERE id = ?");
                     $req->execute([$item->idWeapon]);
                     $weapon = $req->fetch();
-
-                    echo ('<select class="form-control">
-                 <option>' . $weapon->weaponName . '</option>
-                  </select>');
+                    
+                    echo ('
+                 <option name="' . $weapon->weaponName . '" value="' . $weapon->weaponName . '">' . $weapon->weaponName . '</option>
+                  ');
                 }
                 ?>
+                </select>
                 <!-- On équipe une arme -->
-                <button type="button" class="btn btn-info ml-2">OK</i></button>
+                <button type="submit" name="submit" class="btn btn-info ml-2">OK</i></button>
             </div>
         </form>
     </div>
