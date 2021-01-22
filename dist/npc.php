@@ -10,6 +10,11 @@ require '../src/config/database.php';
 $id = $_GET['id'];
 $page = $_GET['page'];
 
+// On recherche la table Hero
+$query7 = $pdo->query("SELECT bitcoin FROM Hero");
+$hero = $query7->fetch();
+$heroMoney = $hero->bitcoin;
+
 // On recherche toutes les armes figurant dans la table npcWeapon qui correspondent à l'id du Npc
 $query = $pdo->query("SELECT idWeapon FROM npcWeapon WHERE idNPC = $id");
 
@@ -55,9 +60,12 @@ $cancelUrl = "../src/action/nextPage.php?page=$page&id=$id";
                                 $req = $pdo->prepare("SELECT * FROM Weapon WHERE id = ?");
                                 $req->execute([$item->idWeapon]);
                                 $weapon = $req->fetch();
+                                $wCost = $weapon->bitcoin;
 
-                                // Chaque champ est mis en forme dans un tableau
-                                echo ("
+                                if ($wCost <= $heroMoney) {
+
+                                    // Chaque champ est mis en forme dans un tableau
+                                    echo ("
                                     <tr>
                                     <th scope='row'>
                                     <div class='form-check'>
@@ -67,9 +75,10 @@ $cancelUrl = "../src/action/nextPage.php?page=$page&id=$id";
                                     <td>$weapon->weaponName</td>
                                     <td>$weapon->strength</td>
                                     <td>$weapon->stamina</td>
-                                    <td>$weapon->bitcoin</td>
+                                    <td>$wCost</td>
                                     </tr>
                                 ");
+                                }
                             }
 
                             ?>
