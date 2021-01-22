@@ -41,6 +41,17 @@ if ($vilainPower >= $heroPower) {
     $heroPv = $heroHealth - $result1;
 
     $req = $pdo->query("UPDATE Hero SET health = $heroPv");
+
+    $query5 = $pdo->query('SELECT * FROM Hero');
+    $hero = $query5->fetch();
+
+    $heroHealth = $hero->health;
+
+    if ($heroHealth <= 0) {
+
+        header("location: ../../dist/index.php?page=over");
+        exit;
+    }
 } elseif ($heroPower > $vilainPower) {
 
     $result2 = $heroPower - $vilainPower;
@@ -54,11 +65,17 @@ if ($vilainPower >= $heroPower) {
     $query2 = $pdo->query("SELECT * FROM Vilain WHERE id = $id");
     $vilain = $query2->fetch();
 
+    $query6 = $pdo->query("SELECT * FROM Hero");
+    $hero = $query6->fetch();
 
     $vilainHealth = $vilain->health;
+    $vilainBitcoin = $vilain->bitcoin;
+    $heroBitcoin = $hero->bitcoin;
+    $heroBitUpd = $heroBitcoin + $vilainBitcoin;
 
     if ($vilainHealth <= 0) {
 
+        $pdo->query("UPDATE Hero SET bitcoin = $heroBitUpd");
         $pdo->query("DELETE FROM Vilain WHERE id = $id");
     }
     unset($id);
