@@ -11,10 +11,6 @@ $id = $_GET['id'];
 
 // On recherche toutes les propriétés figurant dans la table Vilain qui correspondent à l'id du Vilain
 $query = $pdo->query("SELECT * FROM Vilain WHERE id = $id");
-if ($query->rowCount() == 0) {
-
-    echo ('window.location.replace("nextPage.php")');
-}
 
 $Vilain = $query->fetch();
 $idWeapon = $Vilain->idWeapon;
