@@ -65,10 +65,17 @@ if ($vilainPower >= $heroPower) {
     $query2 = $pdo->query("SELECT * FROM Vilain WHERE id = $id");
     $vilain = $query2->fetch();
 
+    $query6 = $pdo->query("SELECT * FROM Hero");
+    $hero = $query6->fetch();
+
     $vilainHealth = $vilain->health;
+    $vilainBitcoin = $vilain->bitcoin;
+    $heroBitcoin = $hero->bitcoin;
+    $heroBitUpd = $heroBitcoin + $vilainBitcoin;
 
     if ($vilainHealth <= 0) {
 
+        $pdo->query("UPDATE Hero SET bitcoin = $heroBitUpd");
         $pdo->query("DELETE FROM Vilain WHERE id = $id");
     }
     unset($id);
