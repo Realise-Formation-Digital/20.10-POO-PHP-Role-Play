@@ -11,7 +11,6 @@ $itemNpc = $reqNpc->fetch();
 <div class="alert alert-warning text-center" role="alert">
     <span>
         <h5 class=""><?= $itemNpc->npcName ?></h5>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam unde qui non aliquid accusantium molestiae, nisi numquam minus ipsam natus, voluptas voluptatibus repudiandae? Quod eaque nulla porro iste dolores explicabo.
-
+        Une âme solitaire et mystérieuse te propose d'acquérir une arme contre quelques pièces d'or.
     </span>
 </div>
