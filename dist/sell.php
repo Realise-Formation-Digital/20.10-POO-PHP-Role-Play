@@ -75,7 +75,11 @@ $cancelUrl = "../src/action/nextPage.php?page=$page&id=$id";
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-6 text-right">
-                            <button type="submit" class="btn btn-success mr-2">Sell <i class="fas fa-shopping-cart"></i></button>
+                            <button type="submit" class="btn btn-success mr-2" <?php
+                                                                                if ($query->rowCount() == 0) {
+                                                                                    echo ('disabled');
+                                                                                }
+                                                                                ?>>Sell <i class="fas fa-shopping-cart"></i></button>
 
                         </div>
                         <div class="col-6 text-left">

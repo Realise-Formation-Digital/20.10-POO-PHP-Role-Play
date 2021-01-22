@@ -11,7 +11,6 @@ $item = $req->fetch();
 <div class="alert alert-warning text-center" role="alert">
     <span>
         <h5 class=""><?= $item->vilainName ?></h5>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam unde qui non aliquid accusantium molestiae, nisi numquam minus ipsam natus, voluptas voluptatibus repudiandae? Quod eaque nulla porro iste dolores explicabo.
-
+        Tu te retrouves face à un redoutable adversaire. Te sens-tu assez valeureux pour chasser les forces de l'ombre de la cité d'Esmer, ou prendras-tu lâchement la fuite ?
     </span>
 </div>

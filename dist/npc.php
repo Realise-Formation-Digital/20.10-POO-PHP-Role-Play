@@ -16,7 +16,7 @@ $hero = $query7->fetch();
 $heroMoney = $hero->bitcoin;
 
 // On recherche toutes les armes figurant dans la table npcWeapon qui correspondent à l'id du Npc
-$query = $pdo->query("SELECT idWeapon FROM npcWeapon WHERE idNPC = $id");
+$query = $pdo->query("SELECT * FROM npcWeapon WHERE idNPC = $id");
 
 $cancelUrl = "../src/action/nextPage.php?page=$page&id=$id";
 
@@ -57,27 +57,29 @@ $cancelUrl = "../src/action/nextPage.php?page=$page&id=$id";
 
                             // On récupère les propriétés de toutes les armes présentes dans l'inventaire du Npc
                             foreach ($query as $item) {
-                                $req = $pdo->prepare("SELECT * FROM Weapon WHERE id = ?");
-                                $req->execute([$item->idWeapon]);
-                                $weapon = $req->fetch();
-                                $wCost = $weapon->bitcoin;
+                                $heroMoney = $hero->bitcoin;
+                                $req2 = $pdo->prepare("SELECT * FROM Weapon WHERE id = ? AND bitcoin <= $heroMoney");
 
-                                if ($wCost <= $heroMoney) {
+
+                                $req2->execute([$item->idWeapon]);
+                                if ($req2->rowCount() != 0) {
+                                    $weapon = $req2->fetch();
+                                    $wCost = $weapon->bitcoin;
 
                                     // Chaque champ est mis en forme dans un tableau
                                     echo ("
-                                    <tr>
-                                    <th scope='row'>
-                                    <div class='form-check'>
-                                    <input class='form-check-input' type='radio' name='buyWeapon' id=$weapon->id value='$weapon->id' checked>
-                                    </div>
-                                    </th>
-                                    <td>$weapon->weaponName</td>
-                                    <td>$weapon->strength</td>
-                                    <td>$weapon->stamina</td>
-                                    <td>$wCost</td>
-                                    </tr>
-                                ");
+                                        <tr>
+                                        <th scope='row'>
+                                        <div class='form-check'>
+                                        <input class='form-check-input' type='radio' name='buyWeapon' id=$weapon->id value='$weapon->id' checked>
+                                        </div>
+                                        </th>
+                                        <td>$weapon->weaponName</td>
+                                        <td>$weapon->strength</td>
+                                        <td>$weapon->stamina</td>
+                                        <td>$wCost</td>
+                                        </tr>
+                                    ");
                                 }
                             }
 
@@ -88,6 +90,7 @@ $cancelUrl = "../src/action/nextPage.php?page=$page&id=$id";
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-6 text-right">
+
                             <button type="submit" class="btn btn-success mr-2">Buy <i class="fas fa-shopping-cart"></i></button>
 
                         </div>
