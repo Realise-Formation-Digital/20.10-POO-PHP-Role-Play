@@ -65,6 +65,7 @@ $cancelUrl = "../src/action/nextPage.php?page=$page&id=$id";
                                 if ($req2->rowCount() != 0) {
                                     $weapon = $req2->fetch();
                                     $wCost = $weapon->bitcoin;
+                                    $validate = true;
 
                                     // Chaque champ est mis en forme dans un tableau
                                     echo ("
@@ -91,7 +92,11 @@ $cancelUrl = "../src/action/nextPage.php?page=$page&id=$id";
                     <div class="row">
                         <div class="col-6 text-right">
 
-                            <button type="submit" class="btn btn-success mr-2">Buy <i class="fas fa-shopping-cart"></i></button>
+                            <button type="submit" class="btn btn-success mr-2" <?php
+                                                                                if ($validate != true) {
+                                                                                    echo ('disabled');
+                                                                                }
+                                                                                ?>>Buy <i class="fas fa-shopping-cart"></i></button>
 
                         </div>
                         <div class="col-6 text-left">
