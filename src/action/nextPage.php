@@ -65,7 +65,13 @@ if ($nbId == 0) {
 
         $nbId = rand($minId, $maxId);
 
-        header('Location: ../../dist/index.php?page=fight&id=' . $nbId);
+        $query = $pdo->query("SELECT * FROM Vilain WHERE id = $nbId");
+        if ($query->rowCount() != 0) {
+            header('Location: ../../dist/index.php?page=fight&id=' . $nbId);
+        } else {
+            header('Location: nextPage.php');
+        }
+
 
         exit;
     }
