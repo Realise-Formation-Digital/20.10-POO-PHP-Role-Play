@@ -16,9 +16,10 @@ require 'templates/header.php';
             <p>De tout temps, la cité d'Esmer ne connue que la paix,
             jusqu'à ce qu'un mal étrange ne transforma une partie de ses habitants en monstres sanguinaires
         n'ayant pour but que de chasser les être humains pour s'en nourrir.
-        Comme lors de chaque époque troublée, des Héros se lèvent et mettent en jeu leur vie afin de sauver l'humanité.</p>
+        Comme à chaque époque troublée, des Héros se lèvent et mettent en jeu leur vie afin de sauver l'humanité.</p>
             <hr>
-            <p class="mb-0">Duplexque isdem diebus acciderat malum, quod et Theophilum insontem atrox interceperat casus, et Serenianus dignus exsecratione cunctorum, innoxius, modo non reclamante publico vigore, discessit.</p>
+            <p class="mb-0">Vous qui désirez devenir Héro, que la terre vous soit légère et l'issue des combats favorable.
+            "Ad impossibilia nemo tenitur".</p>
         </div>
     </div>
     <br />
