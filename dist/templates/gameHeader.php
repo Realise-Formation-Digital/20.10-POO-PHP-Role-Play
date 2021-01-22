@@ -15,7 +15,7 @@ $coin = $hero->bitcoin;
 $id = $hero->id;
 
 // on recherche toutes les armes présentes dans l'inventaire du hero
-$req1 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id");
+$req1 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id AND gear = 0");
 
 // On met à jour les points de strength et de stamina du hero en fonction de l'arme qu'il a équipé
 $req2 = $pdo->query("SELECT idWeapon FROM heroWeapon WHERE idHero = $id AND gear = 1");
@@ -65,22 +65,31 @@ $heroStamina = $weaponStamina + $hero->stamina;
         <span><?= $hero->bitcoin ?></span>
     </span>
     <div>
-        <form method="POST" action="../src/action/gearWeapon.php?id=<?".$pageSource."?>" class="form-inline">
+        <form method="POST" action="../src/action/gearWeapon.php?id=<?" .$pageSource."?>" class="form-inline">
             <div class="form-group">
-                <select name="Weapons" class="form-control">  
+                <select name="Weapons" class="form-control">
+                    <?php
+                    // On affiche le nom des armes du hero dans une liste afin de sélectionner celle qu'il veut équiper
 
-                <?php
-                // On affiche le nom des armes du hero dans une liste afin de sélectionner celle qu'il veut équiper
-                foreach ($req1 as $item) {
                     $req = $pdo->prepare("SELECT * FROM Weapon WHERE id = ?");
-                    $req->execute([$item->idWeapon]);
+                    $req->execute([$activeWeapon->idWeapon]);
                     $weapon = $req->fetch();
-                    
+
                     echo ('
                  <option name="' . $weapon->weaponName . '" value="' . $weapon->weaponName . '">' . $weapon->weaponName . '</option>
                   ');
-                }
-                ?>
+
+                    // On affiche le nom des armes du hero dans une liste afin de sélectionner celle qu'il veut équiper
+                    foreach ($req1 as $item) {
+                        $req2 = $pdo->prepare("SELECT * FROM Weapon WHERE id = ?");
+                        $req2->execute([$item->idWeapon]);
+                        $weapon = $req2->fetch();
+
+                        echo ('
+                 <option name="' . $weapon->weaponName . '" value="' . $weapon->weaponName . '">' . $weapon->weaponName . '</option>
+                  ');
+                    }
+                    ?>
                 </select>
                 <!-- On équipe une arme -->
                 <button type="submit" name="submit" class="btn btn-info ml-2">OK</i></button>
