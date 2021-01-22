@@ -10,11 +10,11 @@ require '../src/config/database.php';
 $id = $_GET['id'];
 
 // On recherche toutes les propriétés figurant dans la table Vilain qui correspondent à l'id du Vilain
-$query = $pdo->query("SELECT * FROM Vilain WHERE id = $id AND health");
+$query = $pdo->query("SELECT * FROM Vilain WHERE id = $id");
 
 $Vilain = $query->fetch();
-$id = $Vilain->idWeapon;
-$query = $pdo->query("SELECT weaponName FROM Weapon WHERE id = $id");
+$idWeapon = $Vilain->idWeapon;
+$query = $pdo->query("SELECT weaponName FROM Weapon WHERE id = $idWeapon");
 $Weapon = $query->fetch();
 ?>
 
