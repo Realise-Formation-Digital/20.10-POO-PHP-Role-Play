@@ -100,7 +100,7 @@ class VilainSql
         // On déclare la propriété $_vilainBitcoin composée d'un entier aléatoire compris entre 0 et 50    
         $this->_vilainBitcoin = rand(0, 50);
         // On déclare la propriété $_vilainImage composée d'un entier aléatoire compris entre 3 et 8    
-        $this->_vilainImage = rand(3, 8);
+        $this->_vilainImage = rand(3, 14);
         // On déclare la propriété $_weaponName    
         $this->_weaponName = $weapon;
         // On déclare la propriété $_weaponStrength composée d'un entier aléatoire compris entre 1 et $_vilainXp    
