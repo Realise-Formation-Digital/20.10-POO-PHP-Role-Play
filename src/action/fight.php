@@ -70,11 +70,15 @@ if ($vilainPower >= $heroPower) {
 
     $vilainHealth = $vilain->health;
     $vilainBitcoin = $vilain->bitcoin;
+    $vilainIdWeapon = $vilain->idWeapon;
     $heroBitcoin = $hero->bitcoin;
+    $heroId = $hero->id;
     $heroBitUpd = $heroBitcoin + $vilainBitcoin;
 
     if ($vilainHealth <= 0) {
 
+        $pdo->query("INSERT INTO heroWeapon (idHero, idWeapon, gear) VALUES ('".$heroId."', '".$vilainIdWeapon."', '0')");
+        $pdo->query("UPDATE Hero SET bitcoin = $heroBitUpd");
         $pdo->query("UPDATE Hero SET bitcoin = $heroBitUpd");
         $pdo->query("DELETE FROM Vilain WHERE id = $id");
     }
